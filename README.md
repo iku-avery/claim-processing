@@ -33,3 +33,41 @@ Assuming you work on macOS and use [rbenv](http://http://rbenv.org/):
 
   ### Using POSTMAN collection for testing locally:
     - my POSTMAN collection is in `public\Claim API.postman_collection.json` directory - upload it directly to your Postman
+
+
+  ### MVP:
+
+  - 1 Register and get claim
+
+  ```
+    Customer needs to provide his email, first and last name, and a list of flights from his itinerary.
+    We want to validate the email that customer entered.
+    Flight needs to have: departure airport code (IATA), arrival airport code (IATA), airline code (IATA), flight number and the
+    departure date.
+    Itinerary must have at least 1 flight.
+  ```
+
+  - 2 Claim eligibility
+
+  ```
+    We want to calculate the eligibility for the claim using the following algorithm:
+    If any of the flights in the claim are delayed by more than 180 minutes,
+    or are cancelled, we consider the whole claim as eligible.
+    We want to calculate the eligibility for every claim that is registered with us, and be able to return it via API anytime.
+  ```
+
+  - 3 Claim notification
+
+  ```
+    We want to notify the system about any newly-created eligible claim
+  ```
+
+  - 4 Claim download
+
+  ```
+    Our Ops Agents often need to download data for the whole batch of claims.
+    They want to be able to download all the eligible claims for the provided flight identifier.
+    They want to download it in the CSV format.
+    If any flight from the claim matches the identifier, the claim should be returned.
+    The particular format is needed by one of the tools that they use, so it cannot be changed.
+  ```
