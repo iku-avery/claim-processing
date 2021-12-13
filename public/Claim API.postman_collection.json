@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "7070f0f5-4b3c-495b-9434-b449392cefa4",
+		"name": "Claim API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get claims",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/claims",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register claim",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@example.com\",\n    \"firstName\": \"Denearys\",\n    \"lastName\": \"Targaryen\",\n    \"flights\": [\n        {\n            \"airlineCode\": \"SK\",\n            \"flightNumber\": \"2550\",\n            \"departureDate\": \"2020-12-28\",\n            \"departureAirportCode\": \"MAN\",\n            \"arrivalAirportCode\": \"ARN\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/claims",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get claim by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/claims/1cb4af1d-0382-44cf-a9cd-694e31d8bcdd",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"claims",
+						"1cb4af1d-0382-44cf-a9cd-694e31d8bcdd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "claim notification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"claim_id\": \"1cb4af1d-0382-44cf-a9cd-694e31d8bcdd\",\n    \"requester\": \"yzmopolis\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://6194b16e9b1e780017ca2105.mockapi.io/api/v1/claim_notifications",
+					"protocol": "https",
+					"host": [
+						"6194b16e9b1e780017ca2105",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"claim_notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "csv",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/flights/SK-2550-20201228-MAN-ARN",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"flights",
+						"SK-2550-20201228-MAN-ARN"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

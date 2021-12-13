@@ -30,3 +30,6 @@ Assuming you work on macOS and use [rbenv](http://http://rbenv.org/):
 
   - Rails server: `bundle exec rails s`
   - Sidekiq worker: `bundle exec sidekiq`
+
+  ### Using POSTMAN collection for testing locally:
+    - my POSTMAN collection is in `public\Claim API.postman_collection.json` directory - upload it directly to your Postman
