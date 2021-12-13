@@ -8,4 +8,9 @@ class ClaimsController < ApplicationController
     @claims = Claim.all
     render json: @claims
   end
+
+  def show
+    result = ::Services::V1::GetClaim.new.call(params)
+    render json: result
+  end
 end
