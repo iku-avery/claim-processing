@@ -71,3 +71,69 @@ Assuming you work on macOS and use [rbenv](http://http://rbenv.org/):
     If any flight from the claim matches the identifier, the claim should be returned.
     The particular format is needed by one of the tools that they use, so it cannot be changed.
   ```
+
+  ### Contract Interface:
+
+  **POST /api/claims**
+  ----
+  Creates a new claim and returns the claim_id.
+  * **Data Params**  
+  ```
+  {
+    email*: string
+    first_name*: string
+    last_name*: string
+    flights: [
+      airlineCode*: string
+      flightNumber*: string
+      departureDate*: string
+      departureAirportCode*: string
+      arrivalAirportCode*: string
+    ]
+  }
+  ```
+  * **Headers**  
+  Content-Type: application/json  
+  * **Success Response:**  
+  * **Code:** 200  
+  **Content:**  `{ claim_id: string }`
+  * **Error Response:**  
+  * **Code:** 400
+  **Content:**  `{ message: string }`
+
+  **GET /api/claims/:id**
+  ----
+  Returns the specified claim state (`in_progress`, `rejected`, `eligible`)
+  * **URL Params**
+  Required: id=[integer]
+  `id` means `flight_identifier`
+  * **Headers**  
+  Content-Type: application/json  
+  * **Success Response:**  
+  * **Code:** 200  
+  **Content:**  `{ state: string }`
+  * **Error Response:**  
+  * **Code:** 404  
+  **Content:**  `{ message: string }`
+
+  **GET /api/flights/:id**
+  ----
+  Returns the CSV by default
+  * **URL Params**
+  Required: id=[integer]
+  `id` means `flight_identifier`
+  * **Headers**  
+  Content-Type: application/json  
+  * **Success Response:**  
+  * **Code:** 200  
+  **Content:**  `claim_id,email,first_name,last_name,flight_identifiers
+61c76837-f88d-4d61-91dc-4b25792eb8dc,test@example.com,Jon,Snow,"[""SK-2550-20201228-MAN-ARN""]"`
+
+
+  ### TODO:
+  - error handling and logging
+  - tests
+  - move API docs to Swagger
+  - improve results
+  - load tests
+  - rubocop & brakeman
