@@ -7,6 +7,10 @@
 - postgresql database
 - redis
 
+### Important gems:
+
+- [Typhoeus](https://github.com/typhoeus/typhoeus) HTTP requests in parallel
+
 Assuming you work on macOS and use [rbenv](http://http://rbenv.org/):
 1. Install dependencies listed in the [dependencies section](#dependencies)
 
@@ -21,3 +25,8 @@ Assuming you work on macOS and use [rbenv](http://http://rbenv.org/):
     ```shell
     bundle exec rake db:create && bundle exec rake db:migrate && bundle
     ```
+
+  ### Running the app
+
+  - Rails server: `bundle exec rails s`
+  - Sidekiq worker: `bundle exec sidekiq`

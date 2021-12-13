@@ -8,5 +8,5 @@ class Flight < ApplicationRecord
   validates :departure_airport_code, presence: true
   validates :arrival_airport_code, presence: true
 
-  enum status: { no_data: 0, delayed: 1, on_time: 2, cancelled: 3 }, _default: :no_data
+  enum flight_status: { no_data: 0, delayed: 1, on_time: 2, cancelled: 3 }, _default: :no_data
 end

@@ -1,14 +1,18 @@
 module Services
   module V1
     class CreateClaim
-      def initialize(claim_repository: ::ClaimRepository.new, create_flight: CreateFlight.new)
+      def initialize(claim_repository: ::ClaimRepository.new,
+                    create_flight: CreateFlight.new,
+                    collect_flights_data: ::CollectFlightsDataWorker)
         @claim_repository = claim_repository
         @create_flight = create_flight
+        @collect_flights_data = collect_flights_data
       end
 
       def call(payload)
         claim_result = run_claim_transaction(payload)
         result = if claim_result.success?
+          run_worker(claim_result.claim_id)
           Result.new(code: 201)
         else
           Result.new(code: 400, message: claim_result.message)
@@ -17,6 +21,10 @@ module Services
       end
 
       private
+
+      def run_worker(claim_id)
+        @collect_flights_data.perform_in(1, claim_id)
+      end
 
       def run_claim_transaction(payload)
         ActiveRecord::Base.transaction do

@@ -19,6 +19,7 @@ gem 'puma', '~> 5.0'
 gem 'rspec-rails'
 gem 'redis', '~> 4.0'
 gem 'sidekiq'
+gem "typhoeus", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

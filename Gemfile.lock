@@ -69,6 +69,8 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
+    ethon (0.15.0)
+      ffi (>= 1.15.0)
     ffi (1.15.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -160,6 +162,8 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.1.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.5)
@@ -181,6 +185,7 @@ DEPENDENCIES
   rspec-rails
   sidekiq
   spring
+  typhoeus
   tzinfo-data
 
 RUBY VERSION
