@@ -1,6 +1,11 @@
 module Services
   module V1
     class CreateClaim
+      Result = Struct.new(:code, :message, :claim_id, keyword_init: true) do
+        def response
+          { claim_id: claim_id, response_code: code, message: message }
+        end
+      end
       def initialize(claim_repository: ::ClaimRepository.new,
                     create_flight: CreateFlight.new,
                     collect_flights_data: ::CollectFlightsDataWorker)
@@ -13,7 +18,7 @@ module Services
         claim_result = run_claim_transaction(payload)
         result = if claim_result.success?
           run_worker(claim_result.claim_id)
-          Result.new(code: 201)
+          Result.new(claim_id: claim_result.claim_id, code: 201)
         else
           Result.new(code: 400, message: claim_result.message)
         end
