@@ -1,7 +1,7 @@
 class ClaimsController < ApplicationController
   def create
     result = ::Services::V1::CreateClaim.new.call(params)
-    render json: result
+    render json: result.response_body, status: result.response_code
   end
 
   def index
@@ -11,6 +11,6 @@ class ClaimsController < ApplicationController
 
   def show
     result = ::Services::V1::GetClaim.new.call(params)
-    render json: result
+    render json: result.response_body, status: result.response_code
   end
 end

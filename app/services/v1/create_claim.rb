@@ -2,8 +2,15 @@ module Services
   module V1
     class CreateClaim
       Result = Struct.new(:code, :message, :claim_id, keyword_init: true) do
-        def response
-          { claim_id: claim_id, response_code: code, message: message }
+        def response_body
+          if response_code.in?(200..299)
+            { claim_id: claim_id }
+          else
+            { message: message }
+          end
+        end
+        def response_code
+          code
         end
       end
       def initialize(claim_repository: ::ClaimRepository.new,

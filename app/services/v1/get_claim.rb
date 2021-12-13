@@ -2,8 +2,15 @@ module Services
   module V1
     class GetClaim
       Result = Struct.new(:code, :message, :state, keyword_init: true) do
-        def response
-          { state: state, response_code: code, message: message }
+        def response_body
+          if response_code.in?(200..299)
+            { state: state }
+          else
+            { message: message }
+          end
+        end
+        def response_code
+          code
         end
       end
 
