@@ -9,4 +9,6 @@ class Flight < ApplicationRecord
   validates :arrival_airport_code, presence: true
 
   enum flight_status: { no_data: 0, delayed: 1, on_time: 2, cancelled: 3 }, _default: :no_data
+
+  scope :with_eligible_claims, -> { joins(:claims).where(claims: { state: :eligible}) }
 end
