@@ -8,4 +8,17 @@ class FlightRepository
       flight.arrival_airport_code = attributes[:arrivalAirportCode]
     end
   end
+
+  def update!(object, attributes)
+    object.assign_attributes(attributes)
+    save!(object)
+  end
+
+  def save!(object)
+    object.save!
+  end
+
+  def find_by_flight_identifier!(flight_identifier)
+    Flight.find_by_flight_identifier!(flight_identifier)
+  end
 end
